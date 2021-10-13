@@ -17,6 +17,24 @@ body {
 
 }
 
+.startBtn{
+  font-family: 'Press Start 2P', cursive;
+  margin: 25px;
+  display: inline-block;
+  padding-top: 25px;
+  height: 40px;
+  width: 90px;
+  border: 10px solid black;
+  border-radius: 20%;
+  background-color: white;
+  user-select: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.startBtn:hover{
+  transform: scale(1.1);
+}
+
 .btn {
   margin: 25px;
   display: inline-block;
@@ -47,7 +65,40 @@ body {
   background-color: yellow;
 }
 
+.pattern{
+ opacity: 50%;
+}
+
 .pressed {
   box-shadow: 0 0 20px white;
   background-color: grey;
 }
+
+.imgNima{
+  width: 1.5rem;
+}
+
+.footer {
+  font-size: 2rem;
+  font-family: "Oswald", sans-serif;
+  color: #FEF2BF;
+  padding-top: 0px;
+  /* font-family: sans-serif; */
+}
+
+.footerText{
+  font-family: 'Press Start 2P', cursive;
+  color: #FEF2BF;
+}
+
+a{
+
+  text-decoration: none;
+  font-family: 'Press Start 2P', cursive;
+  color: #DBEDF3;
+}
+
+a:hover{
+  color: #a2b0b4;
+}
+
