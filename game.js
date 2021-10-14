@@ -26,7 +26,7 @@ function NextSequence() {
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
   //Selection Animation
-  ("#"+randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
+  $("#"+randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
   //Selection Sound
   playSound(randomChosenColour);
 }
@@ -71,7 +71,7 @@ $(".btn").click(function(){
 });
 
 function playSound(name){
-  var audio = new Audio("sound/"+name+".mp3");
+  var audio = new Audio("sounds/"+name+".mp3");
   audio.play();
 }
 
