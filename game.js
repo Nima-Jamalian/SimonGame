@@ -2,8 +2,9 @@ var buttonColours = ["red", "blue", "green", "yellow"];
 var gamePattern = [];
 var userSelection = [];
 var level = 1;
-
+var start = false;
 $("#start").click(function () {
+  start = true;
     if($("#start").hasClass("playingButton") == false){
       StartGame();
     }
@@ -44,6 +45,7 @@ function CheckUserAnswer(currentLevel){
 }
 
 function GameOver(){
+  start = false;
   $("body").addClass("redBody");
   $("#level-title").text("GAME OVER!");
   playSound("wrong");
@@ -67,7 +69,9 @@ $(".btn").click(function(){
   userSelection.push(userChosenColour);
   playSound(userChosenColour);
   PressAnimation(userChosenColour);
-  CheckUserAnswer(userSelection.length-1);
+  if(start == true){
+    CheckUserAnswer(userSelection.length-1);
+  }
 });
 
 function playSound(name){
