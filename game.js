@@ -3,12 +3,15 @@ var gamePattern = [];
 var userPattern = [];
 var level = 1;
 $("#start").click(function () {
-    StartGame();
+    if($("#start").hasClass("playingButton") == false){
+      StartGame();
+    }
 });
 
 function StartGame(){
     $("#level-title").text("Level " + level);
-    $("#start").text("PLAYING");
+    $("#start").text("Playing");
+    $("#start").addClass("playingButton");
     NextSequence();
 }
 
@@ -32,16 +35,28 @@ function SelectSequenceUI() {
 function CheckUserSelection() {
     for(let i=0; i<userPattern.length; i++){
         if(userPattern[i] != gamePattern[i]){
-            $("#level-title").text("GAME OVER!");
+            GameOver();
     }
-    if(userPattern.length == gamePattern.length){
+    else if(userPattern.length == gamePattern.length){
         userPattern.length = 0;
         setTimeout(()=> {
             $("#level-title").text("Level " + level++);
             NextSequence();
-        },400);
+        },500);
     }
+  }
 }
+
+function GameOver(){
+  $("#level-title").text("GAME OVER!");
+  gamePattern.length = 0;
+  userPattern.length = 0;
+  level = 1;
+  $("#start").removeClass("playingButton");
+  $("#start").addClass("restartButton");
+  $("#start").text("Restart");
+}
+
 //Check for button selection
 $("#green").click(() => {
   $("#green").addClass("pressed");

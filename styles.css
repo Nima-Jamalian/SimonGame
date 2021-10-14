@@ -8,13 +8,13 @@ body {
   font-size: 3rem;
   margin:  5%;
   color: #FEF2BF;
+  margin-bottom: 30px;
 }
 
 .container {
   display: block;
   width: 50%;
   margin: auto;
-
 }
 
 .startBtn{
@@ -32,6 +32,27 @@ body {
 }
 
 .startBtn:hover{
+  transform: scale(1.1);
+}
+
+.playingButton{
+  width: 120px;
+  transition: all 0.2s ease-in-out;
+  opacity: 50%;
+  /* display: none; */
+}
+
+.playingButton:hover{
+  transform: scale(1);
+}
+
+.restartButton{
+  width: 120px;
+  transition: all 0.2s ease-in-out;
+  /* display: none; */
+}
+
+.restartButton:hover{
   transform: scale(1.1);
 }
 
