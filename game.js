@@ -2,6 +2,7 @@ var buttonColours = ["red", "blue", "green", "yellow"];
 var gamePattern = [];
 var userPattern = [];
 var level = 1;
+
 $("#start").click(function () {
     if($("#start").hasClass("playingButton") == false){
       StartGame();
@@ -12,7 +13,9 @@ function StartGame(){
     $("#level-title").text("Level " + level);
     $("#start").text("Playing");
     $("#start").addClass("playingButton");
-    NextSequence();
+    setTimeout(() => {
+      NextSequence();
+    }, 500);
 }
 
 function NextSequence() {
@@ -27,6 +30,22 @@ function NextSequence() {
 
 function SelectSequenceUI() {
   $("." + gamePattern[gamePattern.length - 1]).addClass("pattern");
+  switch(gamePattern[gamePattern.length - 1]){
+    case "green":
+    GreenAudio();
+      break;
+    case "red":
+      RedAudio();
+      break;
+    case "yellow":
+      YellowAudio();
+      break;
+    case "blue":
+      BlueAudio();
+      break;
+      default:
+        break;
+  }
   setTimeout(() => {
     $("." + gamePattern[gamePattern.length - 1]).removeClass("pattern");
   }, 150);
@@ -48,44 +67,70 @@ function CheckUserSelection() {
 }
 
 function GameOver(){
+  $("body").addClass("redBody");
   $("#level-title").text("GAME OVER!");
+  var wrongAudio = new Audio("sounds/wrong.mp3");
+  wrongAudio.play();
   gamePattern.length = 0;
   userPattern.length = 0;
   level = 1;
+  setTimeout(() => {
+    $("body").removeClass("redBody");
+  }, 200);
   $("#start").removeClass("playingButton");
   $("#start").addClass("restartButton");
   $("#start").text("Restart");
 }
 
+function GreenAudio(){
+  var greenAudio = new Audio("sounds/green.mp3");
+  greenAudio.play();
+}
+function RedAudio(){
+  var redAudio = new Audio("sounds/red.mp3");
+  redAudio.play();
+}
+function YellowAudio(){
+  var yellowAudio = new Audio("sounds/yellow.mp3");
+  yellowAudio.play();
+}
+function BlueAudio(){
+  var blueAudio = new Audio("sounds/blue.mp3");
+  blueAudio.play();
+}
 //Check for button selection
 $("#green").click(() => {
-  $("#green").addClass("pressed");
+  GreenAudio();
+  $("#green").addClass("pressedGreen");
   setTimeout(() => {
-    $("#green").removeClass("pressed");
+    $("#green").removeClass("pressedGreen");
   }, 150);
   userPattern.push("green");
   CheckUserSelection();
 });
 $("#red").click(() => {
-  $("#red").addClass("pressed");
+  RedAudio();
+  $("#red").addClass("pressedRed");
   setTimeout(() => {
-    $("#red").removeClass("pressed");
+    $("#red").removeClass("pressedRed");
   }, 150);
   userPattern.push("red");
   CheckUserSelection();
 });
 $("#yellow").click(() => {
-  $("#yellow").addClass("pressed");
+  YellowAudio();
+  $("#yellow").addClass("pressedYellow");
   setTimeout(() => {
-    $("#yellow").removeClass("pressed");
-  }, 150);
+    $("#yellow").removeClass("pressedYellow");
+  }, 100);
   userPattern.push("yellow");
   CheckUserSelection();
 });
 $("#blue").click(() => {
-  $("#blue").addClass("pressed");
+  BlueAudio();
+  $("#blue").addClass("pressedBlue");
   setTimeout(() => {
-    $("#blue").removeClass("pressed");
+    $("#blue").removeClass("pressedBlue");
   }, 150);
   userPattern.push("blue");
   CheckUserSelection();

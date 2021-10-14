@@ -3,6 +3,10 @@ body {
   background-color: #011F3F;
 }
 
+.redBody{
+  background-color: red;
+}
+
 #level-title {
   font-family: 'Press Start 2P', cursive;
   font-size: 3rem;
@@ -72,27 +76,62 @@ body {
 
 .red {
   background-color: red;
+  transition: all 0.1s ease-in-out;
+}
+
+.red:hover{
+ border:10px solid rgb(173, 2, 2);
 }
 
 .green {
   background-color: green;
+  transition: all 0.1s ease-in-out;
 }
+
+.green:hover{
+  border:10px solid rgb(0, 88, 0);
+ }
 
 .blue {
   background-color: blue;
+  transition: all 0.1s ease-in-out;
 }
+
+.blue:hover{
+  border:10px solid rgb(0, 0, 177);
+ }
 
 .yellow {
   background-color: yellow;
+  transition: all 0.1s ease-in-out;
 }
+
+.yellow:hover{
+  border:10px solid rgb(156, 156, 0);
+ }
 
 .pattern{
  opacity: 50%;
 }
 
-.pressed {
-  box-shadow: 0 0 20px white;
-  background-color: grey;
+.pressedRed {
+  filter: drop-shadow(0 0 10rem red);
+  box-shadow: 0 0 20px red;
+}
+
+.pressedGreen {
+  filter: drop-shadow(0 0 10rem Green);
+  box-shadow: 0 0 20px Green;
+}
+
+.pressedBlue {
+  filter: drop-shadow(0 0 10rem blue);
+  box-shadow: 0 0 20px blue;
+}
+
+.pressedYellow {
+  filter: drop-shadow(0 0 10rem yellow);
+  box-shadow: 0 0 20px yellow;
 }
 
 .imgNima{
