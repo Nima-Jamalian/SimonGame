@@ -1,6 +1,6 @@
 var buttonColours = ["red", "blue", "green", "yellow"];
 var gamePattern = [];
-var userPattern = [];
+var userSelection = [];
 var level = 1;
 
 $("#start").click(function () {
@@ -19,61 +19,35 @@ function StartGame(){
 }
 
 function NextSequence() {
+  userSelection = [];
+  $("#level-title").text("Level " + level++);
   var randomNumber = Math.random() * 4;
   randomNumber = Math.floor(randomNumber);
-
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
-  console.log(gamePattern);
-  SelectSequenceUI();
+  //Selection Animation
+  ("#"+randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
+  //Selection Sound
+  playSound(randomChosenColour);
 }
 
-function SelectSequenceUI() {
-  $("." + gamePattern[gamePattern.length - 1]).addClass("pattern");
-  switch(gamePattern[gamePattern.length - 1]){
-    case "green":
-    GreenAudio();
-      break;
-    case "red":
-      RedAudio();
-      break;
-    case "yellow":
-      YellowAudio();
-      break;
-    case "blue":
-      BlueAudio();
-      break;
-      default:
-        break;
-  }
-  setTimeout(() => {
-    $("." + gamePattern[gamePattern.length - 1]).removeClass("pattern");
-  }, 150);
-}
-
-function CheckUserSelection() {
-    for(let i=0; i<userPattern.length; i++){
-        if(userPattern[i] != gamePattern[i]){
-            GameOver();
+function CheckUserAnswer(currentLevel){
+  if(gamePattern[currentLevel] === userSelection[currentLevel]){
+    if(userSelection.length === gamePattern.length){
+      setTimeout(function(){
+        NextSequence();
+      },1000);
     }
-    else if(userPattern.length == gamePattern.length){
-        userPattern.length = 0;
-        setTimeout(()=> {
-            $("#level-title").text("Level " + level++);
-            NextSequence();
-        },500);
-    }
+  } else {
+    GameOver();
   }
 }
 
 function GameOver(){
   $("body").addClass("redBody");
   $("#level-title").text("GAME OVER!");
-  var wrongAudio = new Audio("sounds/wrong.mp3");
-  wrongAudio.play();
-  gamePattern.length = 0;
-  userPattern.length = 0;
-  level = 1;
+  playSound("wrong");
+  StartOver();
   setTimeout(() => {
     $("body").removeClass("redBody");
   }, 200);
@@ -82,56 +56,28 @@ function GameOver(){
   $("#start").text("Restart");
 }
 
-function GreenAudio(){
-  var greenAudio = new Audio("sounds/green.mp3");
-  greenAudio.play();
+function StartOver(){
+  gamePattern = [];
+  level = 1;
 }
-function RedAudio(){
-  var redAudio = new Audio("sounds/red.mp3");
-  redAudio.play();
-}
-function YellowAudio(){
-  var yellowAudio = new Audio("sounds/yellow.mp3");
-  yellowAudio.play();
-}
-function BlueAudio(){
-  var blueAudio = new Audio("sounds/blue.mp3");
-  blueAudio.play();
-}
+
 //Check for button selection
-$("#green").click(() => {
-  GreenAudio();
-  $("#green").addClass("pressedGreen");
-  setTimeout(() => {
-    $("#green").removeClass("pressedGreen");
-  }, 150);
-  userPattern.push("green");
-  CheckUserSelection();
+$(".btn").click(function(){
+  var userChosenColour = $(this).attr("id");
+  userSelection.push(userChosenColour);
+  playSound(userChosenColour);
+  PressAnimation(userChosenColour);
+  CheckUserAnswer(userSelection.length-1);
 });
-$("#red").click(() => {
-  RedAudio();
-  $("#red").addClass("pressedRed");
-  setTimeout(() => {
-    $("#red").removeClass("pressedRed");
-  }, 150);
-  userPattern.push("red");
-  CheckUserSelection();
-});
-$("#yellow").click(() => {
-  YellowAudio();
-  $("#yellow").addClass("pressedYellow");
-  setTimeout(() => {
-    $("#yellow").removeClass("pressedYellow");
-  }, 100);
-  userPattern.push("yellow");
-  CheckUserSelection();
-});
-$("#blue").click(() => {
-  BlueAudio();
-  $("#blue").addClass("pressedBlue");
-  setTimeout(() => {
-    $("#blue").removeClass("pressedBlue");
-  }, 150);
-  userPattern.push("blue");
-  CheckUserSelection();
-});
+
+function playSound(name){
+  var audio = new Audio("sound/"+name+".mp3");
+  audio.play();
+}
+
+function PressAnimation(currentColour){
+  $("#"+currentColour).addClass("pressed"+currentColour);
+  setTimeout(function(){
+    $("#"+currentColour).removeClass("pressed"+currentColour);
+  },100);
+}
