@@ -69,6 +69,35 @@ body {
   border-radius: 20%;
 }
 
+@media screen and (max-width:1180px) {
+  .btn{
+    height: 150px;
+    width: 150px;
+  }
+}
+
+@media screen and (max-width:910px) {
+  .btn{
+    height: 100px;
+    width: 100px;
+  }
+}
+
+@media screen and (max-width:700px) {
+  .btn{
+    height: 50px;
+    width: 50px;
+  }
+}
+
+@media screen and (max-width:500px) {
+  .btn{
+    height: 44px;
+    width: 44px;
+  }
+}
+
+
 .game-over {
   background-color: red;
   opacity: 0.8;
