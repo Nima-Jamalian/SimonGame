@@ -3,6 +3,12 @@ body {
   background-color: #011F3F;
 }
 
+p{
+  text-align: left;
+  font-family: 'Press Start 2P', cursive;
+  color: #FEF2BF;
+}
+
 .redBody{
   background-color: red;
 }
@@ -37,6 +43,34 @@ body {
 
 .startBtn:hover{
   transform: scale(1.1);
+}
+
+.ruleBtn{
+  font-family: 'Press Start 2P', cursive;
+  margin: 25px;
+  display: block;
+  margin: auto;
+  padding-top: 25px;
+  height: 40px;
+  width: 90px;
+  margin-bottom: 20px;
+  border: 10px solid black;
+  border-radius: 20%;
+  background-color: white;
+  user-select: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.ruleBtn:hover{
+  transform: scale(1.1);
+}
+
+.rulesText{
+  transition: all 0.2s ease-in-out;
+}
+
+.removeDisplay{
+  display: none;
 }
 
 .playingButton{
@@ -168,6 +202,7 @@ body {
 }
 
 .footer {
+  text-align: center;
   font-size: 2rem;
   font-family: "Oswald", sans-serif;
   color: #FEF2BF;
@@ -176,6 +211,7 @@ body {
 }
 
 .footerText{
+  text-align: center;
   font-family: 'Press Start 2P', cursive;
   color: #FEF2BF;
 }
